@@ -1,0 +1,91 @@
+{% extends "admin_layout.html" %}
+{% block body %}
+
+
+
+
+<!-- /#sidebar-wrapper -->
+
+<!-- Page Content -->
+<div id="page-content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Raid name</th>
+                        <th>Bosses</th>
+                        <th>Normal</th>
+                        <th>Heroic</th>
+                        <th>Mythic</th>
+                        <th>Show on main page</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for raid in raids %}
+                    <form action="{{ url_for('edit_raid') }}" method=post class=add-entry>
+                        <tr>
+                            <th>
+                                <input class="form-control" name="id" value="{{ raid[0] }}" style="display:none;">
+                                <input class="form-control" name="raid" value="{{ raid[1] }}">
+                            </th>
+                            <td><input class="form-control" name="bosses" value="{{ raid[2] }}"></td>
+                            <td><input class="form-control" name="normal" value="{{ raid[3] }}"></td>
+                            <td><input class="form-control" name="heroic" value="{{ raid[4] }}"></td>
+                            <td><input class="form-control" name="mythic" value="{{ raid[5] }}"></td>
+                            <td>
+                                <div class="form-group">
+                                    <select class="form-control" name="show" id="show">
+                                        <option selected="selected" hidden="hidden" value="{{ raid[6] }}">{{ raid[6] }}</option>
+                                        <option>Show</option>
+                                        <option>Hide</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td><input type=submit value=UPDATE class=" btn button-custom btn-custom-two"></td>
+                        </tr>
+                    </form>
+                    {% endfor %}
+                    <form action="{{ url_for('add_raid') }}" method=post class=add-entry>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-group">
+                                    <input class="form-control" name="raid" required placeholder="">
+                                </div>
+                            </th>
+
+                            <td>
+                                <div class="form-group">
+                                    <input class="form-control" name="bosses" required placeholder="">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <input class="form-control" name="normal" required placeholder="">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <input class="form-control" name="heroic" required placeholder="">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <input class="form-control" name="mythic" required placeholder="">
+                                </div>
+                            </td>
+                            <td>
+                                 <input type=submit value=ADD class=" btn button-custom btn-custom-two">
+                            </td>
+                        </tr>
+                    </form>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- /#page-content-wrapper -->
+
+
+{% endblock %}
