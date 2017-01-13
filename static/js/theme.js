@@ -194,3 +194,21 @@ $(document).on('click','.navbar-collapse.in',function(e) {
         $(this).collapse('hide');
     }
 });
+
+
+
+//////////////////////////////
+//Guild rank from wowprogress
+//////////////////////////////
+
+$.getJSON(
+"http://query.yahooapis.com/v1/public/yql?q=SELECT * FROM json WHERE url=\"www.wowprogress.com/guild/eu/twisting-nether/Syn/json_rank\"&format=json",
+function(jsonp) {
+var world = jsonp.query.results.json.world_rank
+var realm = jsonp.query.results.json.realm_rank
+document.getElementById("guildrank").innerHTML =
+"Twisting Nether " +
+realm +
+", World "+
+world
+;});

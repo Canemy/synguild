@@ -17,7 +17,7 @@ body {
 	position: relative;
 	height: 100%;
 	font-size: 14px;
-	color: #363940;
+	color: #fff;
 }
 body .body {
 	height: 100%;
@@ -33,7 +33,7 @@ body .body {
 }
 .page {
   overflow: hidden;
-  background-color: #fff;
+  background-color: #121212;
   padding: 50px 0;
 }
 * {
@@ -127,7 +127,7 @@ section {
 
 
 /* ===== Begin text colors ===== */
-.text-main { color: #363940; } /* Theme main color */
+.text-main { color: #FFF; } /* Theme main color */
 .text-white { color: #FFF; }
 .text-off-white { color: #e7e7e7;}
 .text-dark { color: #000; }
@@ -309,7 +309,7 @@ section {
 }
 a.rotate-box-1, a.rotate-box-2 {
 	text-decoration: none;
-	color: #363940;
+	color: #fff;
 }
 a.rotate-box-1:hover, a.rotate-box-2:hover {
 	color: #676D75;
