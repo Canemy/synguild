@@ -58,7 +58,6 @@ def close_db(error):
 # PUBLIC PAGES
 @app.route('/')
 def home():
-    print(generate_password_hash("SynGuildTN"))
     db = get_db()
     cur = db.cursor()
     cur.execute('select id, name, bosses, normal, heroic, mythic from progression where show=%s order by id asc',
@@ -82,11 +81,10 @@ def apply():
 def add_app():
     db = get_db()
     cur = db.cursor()
-    cur.execute('insert into applications (name, age, country, battletag, armory, specs, rig, experience, improve, what_it_takes, ui, logs, headset, raids, prevention, additional) '
-                'values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
-                (request.form['name'], request.form['age'], request.form['country'], request.form['battletag'], request.form['armory'], request.form['specs'], request.form['rig'],
-                 request.form['experience'], request.form['improve'], request.form['what_it_takes'], request.form['ui'], request.form['logs'], request.form['headset'], request.form['raids'],
-                 request.form['prevention'], request.form['additional']))
+    cur.execute('insert into applications (name, armory, logs, alts, attendance, farm, standby, personality, whyjoin, whypick) '
+                'values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
+                (request.form['name'], request.form['armory'], request.form['logs'], request.form['alts'], request.form['attendance'], request.form['farm'], request.form['standby'],
+                 request.form['personality'], request.form['whyjoin'], request.form['whypick']))
     db.commit()
     flash('Application submitted')
     return redirect(url_for('home', _external=True, _scheme='http'))
@@ -117,7 +115,7 @@ def apps():
         return redirect(url_for('login', _external=True, _scheme='http'))
     db = get_db()
     cur = db.cursor()
-    cur.execute('select id, name, age, country, battletag, armory, specs, rig, experience, improve, what_it_takes, ui, logs, headset, raids, prevention, additional, datetime '
+    cur.execute('select id, name, armory, logs, alts, attendance, farm, standby, personality, whyjoin, whypick, datetime '
                 'from applications order by id desc')
     apps = cur.fetchall()
     return render_template('admin_apps.html', apps=apps)
