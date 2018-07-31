@@ -187,7 +187,7 @@ def update_roster():
         return redirect(url_for('login', _external=True, _scheme='http'))
     db = get_db()
     cur = db.cursor()
-    apiurl = "https://eu.api.battle.net/wow/guild/Twisting%20Nether/Syn?fields=members&locale=en_GB&apikey=bbxvr8d24fm3tfztdcxnp9jq7zfextpd"
+    apiurl = "https://eu.api.battle.net/wow/guild/Twisting%20Nether/Syn?fields=members&locale=en_GB&apikey=ra9zeyhq6dyqgw86jq7na3z26u6y3qqy"
     response = urllib.request.urlopen(apiurl)
     data = json.loads(response.read())
     members = []
